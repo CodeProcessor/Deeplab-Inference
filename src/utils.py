@@ -5,14 +5,10 @@
 @Time:        2021-09-23 00.27
 """
 import collections
-import os
-import tempfile
 
+import numpy as np
 from matplotlib import gridspec
 from matplotlib import pyplot as plt
-import numpy as np
-
-import urllib
 
 DatasetInfo = collections.namedtuple(
     'DatasetInfo',
