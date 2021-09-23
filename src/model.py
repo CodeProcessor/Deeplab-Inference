@@ -6,9 +6,9 @@
 """
 import os
 import tensorflow as tf
-from utils import cityscapes_dataset_information
+from src.utils import cityscapes_dataset_information
 
-DIR_NAME = 'data'
+DIR_NAME = 'src/data'
 MODEL_NAME = 'resnet50_os32_panoptic_deeplab_cityscapes_crowd_trainfine_saved_model'
 
 _MODELS = ('resnet50_os32_panoptic_deeplab_cityscapes_crowd_trainfine_saved_model',

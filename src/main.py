@@ -11,8 +11,8 @@ import numpy as np
 import tensorflow as tf
 from PIL import Image
 
-from model import LOADED_MODEL, DATASET_INFO
-from utils import vis_segmentation
+from src.model import LOADED_MODEL, DATASET_INFO
+from src.utils import vis_segmentation
 
 gpus = tf.config.experimental.list_physical_devices('GPU')
 if gpus:
@@ -31,11 +31,21 @@ def predict(image_path):
 
     output = LOADED_MODEL(tf.cast(im, tf.uint8))
 
-    vis_segmentation(im, output['panoptic_pred'][0], DATASET_INFO, output_name=f"{output_dir}/output_{_name}")
+    return vis_segmentation(im, output['panoptic_pred'][0], DATASET_INFO, output_name=f"{output_dir}/output_{_name}")
 
 
-UPLOADED_FILE = os.path.join('data/MVD_research_samples', 'Asia/tlxGlVwxyGUdUBfkjy1UOQ.jpg')
+def get_predicted_image(image):
+    im = np.array(image)
+    output = LOADED_MODEL(tf.cast(im, tf.uint8))
+    path = vis_segmentation(im, output['panoptic_pred'][0], DATASET_INFO, output_name="image")
+    if os.path.exists(path):
+        return Image.open(path)
+    else:
+        return None
 
-for _file_name in glob.glob("data/MVD_research_samples/Asia/*.jpg"):
-    predict(_file_name)
-    print(f"Predicted for the image : {_file_name}")
+
+if __name__ == '__main__':
+    for _file_name in glob.glob("src/data/MVD_research_samples/Asia/*.jpg"):
+        predict(_file_name)
+        print(f"Predicted for the image : {_file_name}")
+

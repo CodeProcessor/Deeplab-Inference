@@ -198,5 +198,10 @@ def vis_segmentation(image,
     plt.grid('off')
     if output_name == "show":
         plt.show()
+    elif output_name == "image":
+        temp_name = '.tmp.png'
+        plt.savefig(temp_name)
+        return temp_name
     else:
         plt.savefig(f'{output_name}.png')
+    return 0
