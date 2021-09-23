@@ -1,5 +1,3 @@
 #!/usr/bin/env bash
 
-IMAGE_NAME=deeplab:v1.1
-docker rmi $IMAGE_NAME
-docker build -t $IMAGE_NAME .
+docker run -it --rm -p 80:80 deeplab:v1.1

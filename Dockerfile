@@ -9,6 +9,7 @@ COPY src/ /home/src
 COPY run.sh /home
 COPY server.py /home
 
+EXPOSE 80
 WORKDIR /home
-
+CMD ["python3", "server.py"]
 

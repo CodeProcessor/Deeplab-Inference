@@ -1,1 +1,3 @@
-uvicorn server:app --reload
+#!/usr/bin/env python
+
+python3 server.py
